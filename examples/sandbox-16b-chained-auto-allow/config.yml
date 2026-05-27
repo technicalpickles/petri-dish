@@ -1,0 +1,18 @@
+name: sandbox-16b-chained-auto-allow
+description: "Chained Bash commands with autoAllowBashIfSandboxed: true — does the suggestion engine still fire?"
+
+environment:
+  name: test-sbox-16b-chained-auto-allow
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

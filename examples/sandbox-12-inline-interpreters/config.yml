@@ -1,0 +1,24 @@
+name: sandbox-12-inline-interpreters
+description: "Inline interpreters: node -e, python -c, piped execution vs file execution"
+
+environment:
+  name: test-sbox-12-inline-interpreters
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

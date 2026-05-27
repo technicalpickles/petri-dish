@@ -1,0 +1,27 @@
+name: sandbox-19-read-outside-sandbox
+description: "Layer 2 leak: Read/Write tools bypass sandbox; Bash respects it. Tight allowWrite shows the gap."
+
+environment:
+  name: test-sbox-19-read-outside-sandbox
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      filesystem:
+        allowWrite:
+          - "/tmp/sandbox-test"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/permissions.md
+  inject_results_file: true
+  model: haiku
+  timeout: 300
+
+prompt_mode: accept

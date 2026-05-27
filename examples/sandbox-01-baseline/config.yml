@@ -1,0 +1,24 @@
+name: sandbox-01-baseline
+description: "Baseline sandbox: enabled, no customization"
+
+environment:
+  name: test-sbox-01-baseline
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

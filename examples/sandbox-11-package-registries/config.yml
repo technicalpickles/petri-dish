@@ -1,0 +1,53 @@
+name: sandbox-11-package-registries
+description: "Package registries: baseline sandbox with package cache writes, no domain allowlist"
+
+environment:
+  name: test-sbox-11-package-registries
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      filesystem:
+        allowWrite:
+          - "~/.cache/npm"
+          - "~/.cache/node"
+          - "~/.cache/node-gyp"
+          - "~/.cache/node/corepack"
+          - "~/.cache/pip"
+          - "~/.cache/uv"
+          - "~/.cache/rubygems"
+          - "~/.cache/mise"
+          - "~/.config/npm"
+          - "~/.config/uv"
+          - "~/.config/mise"
+          - "~/.npm"
+          - "~/.node-gyp"
+          - "~/.gem"
+          - "~/.bundle"
+          - "~/.rbenv"
+          - "~/.local/share/uv"
+          - "~/.local/share/mise"
+          - "~/.local/state/uv"
+          - "~/.local/state/mise"
+          - "~/Library/Caches/npm"
+          - "~/Library/Caches/node/corepack"
+          - "~/Library/Caches/pip"
+          - "~/Library/Caches/uv"
+          - "~/Library/Caches/mise"
+          - "~/Library/Caches/bundle"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  part_suffix: "Run Part A only."
+  timeout: 300
+
+prompt_mode: accept

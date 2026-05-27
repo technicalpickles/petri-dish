@@ -1,0 +1,22 @@
+name: permissions-02a-bare-bash-ask-sandboxed
+description: "Layer 4 workaround baseline: bare Bash in permissions.ask does NOT fire for sandboxed commands"
+
+environment:
+  name: test-perms-02a-bare-bash-ask-sandboxed
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      ask:
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/permissions.md
+  inject_results_file: true
+  model: haiku
+  timeout: 300
+
+prompt_mode: accept

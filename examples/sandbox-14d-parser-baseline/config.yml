@@ -1,0 +1,19 @@
+name: sandbox-14d-parser-baseline
+description: "Parser-only baseline for 14c classifier-accepted commands (no autoMode)"
+
+environment:
+  name: test-sbox-13-parser
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

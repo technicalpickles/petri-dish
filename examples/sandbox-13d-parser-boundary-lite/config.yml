@@ -1,0 +1,19 @@
+name: sandbox-13d-parser-boundary-lite
+description: "Parser bail list validation: simple_expansion, Unhandled string, anchored pattern, brace expansion, command substitution, compound, pipeline"
+
+environment:
+  name: test-sbox-13d-parser-lite
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

@@ -1,0 +1,18 @@
+name: sandbox-12b-inline-interpreters-prompted
+description: "Inline interpreters WITHOUT autoAllowBash: tests permission prompt layer"
+
+environment:
+  name: test-sbox-12b-inline-prompted
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: false
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

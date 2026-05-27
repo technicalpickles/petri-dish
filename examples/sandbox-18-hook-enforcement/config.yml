@@ -1,0 +1,31 @@
+name: sandbox-18-hook-enforcement
+description: "Layer 5 star: PreToolUse hook denies a Bash command even when sandbox+autoAllow would have let it through"
+
+environment:
+  name: test-sbox-18-hook-enforcement
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+    hooks:
+      PreToolUse:
+        - matcher: "Bash"
+          hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks-18.jsonl HOOK_BLOCK_PATTERN=^curl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-block-pattern.sh"
+              timeout: 5
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 300
+
+prompt_mode: accept

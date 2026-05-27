@@ -1,0 +1,25 @@
+name: sandbox-07-escape-hatch
+description: "Escape hatch behavior: default sandbox, escape hatch ON"
+
+environment:
+  name: test-sbox-07-escape-hatch
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  part_suffix: "Run Part A only."
+  timeout: 300
+
+prompt_mode: accept

@@ -1,0 +1,27 @@
+name: sandbox-10b-localhost-binding-enabled
+description: "Localhost binding: allowLocalBinding enabled"
+
+environment:
+  name: test-sbox-10b-localhost-binding-enabled
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      network:
+        allowLocalBinding: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  part_suffix: "Run Part B only."
+  timeout: 300
+
+prompt_mode: accept

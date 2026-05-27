@@ -1,0 +1,1 @@
+../sandbox-20-protected-paths/prompt.md

@@ -1,0 +1,22 @@
+name: permissions-02b-bare-bash-ask-unsandboxed
+description: "Layer 4 workaround fires: bare Bash in permissions.ask prompts when dangerouslyDisableSandbox is set"
+
+environment:
+  name: test-perms-02b-bare-bash-ask-unsandboxed
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      ask:
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/escape-hatch.md
+  inject_results_file: true
+  model: haiku
+  timeout: 300
+
+prompt_mode: accept

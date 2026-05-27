@@ -1,0 +1,23 @@
+name: sandbox-20c-protected-paths-sandbox-off
+description: "Hardcoded protected paths: sandbox disabled (control - all writes should succeed)"
+
+environment:
+  name: test-sbox-20c-protected-paths-sandbox-off
+  plugins: []
+  settings:
+    sandbox:
+      enabled: false
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

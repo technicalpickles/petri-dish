@@ -1,0 +1,36 @@
+name: sandbox-15b-notification-probe
+description: "Notification hook probe: no autoAllow, every bash command should prompt. Do we see Notification events?"
+
+environment:
+  name: test-sbox-15b-notif
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+    hooks:
+      PreToolUse:
+        - matcher: ""
+          hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+      PostToolUse:
+        - matcher: ""
+          hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+      Notification:
+        - hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 120
+
+prompt_mode: accept

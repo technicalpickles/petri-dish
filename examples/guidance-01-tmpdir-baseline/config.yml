@@ -1,0 +1,26 @@
+name: guidance-01-tmpdir-baseline
+description: "Does system-prompt guidance about $TMPDIR vs /tmp land? Observe first-attempt path choice for a temp-file task."
+
+environment:
+  name: test-guidance-01-tmpdir-baseline
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/guidance.md
+  inject_results_file: true
+  model: sonnet
+  timeout: 180
+
+prompt_mode: accept

@@ -1,0 +1,18 @@
+name: sandbox-12c-comment-position-probe
+description: "Probe: does comment position, indentation, or quote style affect permission prompt"
+
+environment:
+  name: test-sbox-12c-comment-probe
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: false
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 600
+
+prompt_mode: accept

@@ -1,0 +1,29 @@
+name: sandbox-03-network-allowlist
+description: "Network domain allowlist: api.github.com, *.npmjs.org, registry.yarnpkg.com"
+
+environment:
+  name: test-sbox-03-network-allowlist
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      network:
+        allowedDomains:
+          - "api.github.com"
+          - "*.npmjs.org"
+          - "registry.yarnpkg.com"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

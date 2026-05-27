@@ -1,0 +1,19 @@
+name: sandbox-13c-compound-walker
+description: "Focused test: compound construct walker behavior with quoted vs bare vars"
+
+environment:
+  name: test-sbox-13-parser
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

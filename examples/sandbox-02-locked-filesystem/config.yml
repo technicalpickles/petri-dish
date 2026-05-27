@@ -1,0 +1,29 @@
+name: sandbox-02-locked-filesystem
+description: "Locked down filesystem: denyRead + allowRead override"
+
+environment:
+  name: test-sbox-02-locked-filesystem
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      filesystem:
+        denyRead:
+          - "~/sandbox-test-sensitive"
+        allowRead:
+          - "~/sandbox-test-sensitive/public"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

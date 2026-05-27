@@ -1,0 +1,24 @@
+name: sandbox-20-protected-paths
+description: "Hardcoded protected paths: baseline sandbox, no allowWrite override"
+
+environment:
+  name: test-sbox-20-protected-paths
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

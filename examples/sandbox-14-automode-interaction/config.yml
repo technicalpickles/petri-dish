@@ -1,0 +1,20 @@
+name: sandbox-14-automode-interaction
+description: "autoMode interaction: does defaultMode auto override parser prompt decisions?"
+
+environment:
+  name: test-sbox-14-automode
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+    permissions:
+      defaultMode: auto
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

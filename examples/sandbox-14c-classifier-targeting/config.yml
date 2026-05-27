@@ -1,0 +1,21 @@
+name: sandbox-14c-classifier-targeting
+description: "Classifier isolation: commands the parser flags but the auto-mode classifier should allow"
+
+environment:
+  name: test-sbox-14-automode
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      defaultMode: auto
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

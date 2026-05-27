@@ -1,0 +1,26 @@
+name: sandbox-07b-escape-hatch-disabled
+description: "Escape hatch disabled: allowUnsandboxedCommands false"
+
+environment:
+  name: test-sbox-07b-escape-hatch-disabled
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      allowUnsandboxedCommands: false
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  part_suffix: "Run Part B only."
+  timeout: 300
+
+prompt_mode: accept

@@ -1,0 +1,24 @@
+name: permissions-01b-edit-acceptedits
+description: "Layer 1 star (B): same as 01 but defaultMode: acceptEdits — Edit should go silent"
+
+environment:
+  name: test-perms-01b-edit-acceptedits
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      defaultMode: acceptEdits
+      allow:
+        - Read
+        - Write
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/permissions.md
+  inject_results_file: true
+  model: haiku
+  timeout: 300
+
+prompt_mode: accept

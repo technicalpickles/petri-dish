@@ -1,0 +1,26 @@
+name: guidance-01b-tmpdir-write-only
+description: "Pure path-choice test: does Claude use $TMPDIR for a temp file when no exec is involved? Disentangles path choice from exec-restriction confound in guidance-01."
+
+environment:
+  name: test-guidance-01b-tmpdir-write-only
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/guidance.md
+  inject_results_file: true
+  model: sonnet
+  timeout: 180
+
+prompt_mode: accept

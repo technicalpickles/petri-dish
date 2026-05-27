@@ -1,0 +1,37 @@
+name: sandbox-15-hook-discovery
+description: "Hook data discovery: same commands as sandbox-13, with PreToolUse/PostToolUse/Notification hooks logging payloads"
+
+environment:
+  name: test-sbox-15-hooks
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    hooks:
+      PreToolUse:
+        - matcher: ""
+          hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+      PostToolUse:
+        - matcher: ""
+          hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+      Notification:
+        - hooks:
+            - type: command
+              command: "HOOK_LOG_FILE=/tmp/harness-hooks.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              timeout: 5
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

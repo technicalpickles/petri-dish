@@ -1,0 +1,28 @@
+name: sandbox-06-custom-write-paths
+description: "Custom write paths: //tmp/sandbox-build (absolute) + ./local-output (relative)"
+
+environment:
+  name: test-sbox-06-custom-write-paths
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      filesystem:
+        allowWrite:
+          - "//tmp/sandbox-build"
+          - "./local-output"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

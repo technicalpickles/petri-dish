@@ -1,0 +1,25 @@
+name: guidance-01b-opus-nosandbox
+description: "Matrix variant of 01b: model=opus, sandbox=off."
+
+environment:
+  name: test-guidance-01b-opus-nosandbox
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: false
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/guidance.md
+  inject_results_file: true
+  model: opus
+  timeout: 180
+
+prompt_mode: accept

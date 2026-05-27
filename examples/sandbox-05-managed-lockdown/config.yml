@@ -1,0 +1,30 @@
+name: sandbox-05-managed-lockdown
+description: "Managed network lockdown: allowManagedDomainsOnly + limited allowedDomains"
+
+environment:
+  name: test-sbox-05-managed-lockdown
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      network:
+        allowedDomains:
+          - "api.github.com"
+          - "*.anthropic.com"
+          - "*.amazonaws.com"
+        allowManagedDomainsOnly: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

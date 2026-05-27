@@ -1,0 +1,31 @@
+name: sandbox-20b-protected-paths-allowwrite
+description: "Hardcoded protected paths + explicit allowWrite override"
+
+environment:
+  name: test-sbox-20b-protected-paths-allowwrite
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+      filesystem:
+        allowWrite:
+          - "//tmp/sandbox-test/.claude"
+          - "//tmp/sandbox-test/.vscode"
+          - "//tmp/sandbox-test/.mcp.json"
+          - "//tmp/sandbox-test/.gitmodules"
+          - "//tmp/sandbox-test/.git"
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

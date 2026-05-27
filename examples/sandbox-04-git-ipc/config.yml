@@ -1,0 +1,24 @@
+name: sandbox-04-git-ipc
+description: "Git operations under sandbox: IPC, fsmonitor, commit, network git"
+
+environment:
+  name: test-sbox-04-git-ipc
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Edit
+        - WebFetch
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

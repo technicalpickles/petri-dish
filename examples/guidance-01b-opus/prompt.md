@@ -1,0 +1,1 @@
+../guidance-01b-tmpdir-write-only/prompt.md

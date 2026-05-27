@@ -1,0 +1,21 @@
+name: parser-boundary-02-realistic-patterns
+description: "Parser bail list validation on realistic compound patterns. Tests whether variable position, cd+write, for-loop bodies, and env-prefix trigger prompts under autoAllowBashIfSandboxed: true."
+
+environment:
+  name: test-parser-boundary-02
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  model: haiku
+  timeout: 600
+
+prompt_mode: accept

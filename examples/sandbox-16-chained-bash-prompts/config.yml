@@ -1,0 +1,18 @@
+name: sandbox-16-chained-bash-prompts
+description: "Chained Bash commands: observe which substring the permission prompt targets"
+
+environment:
+  name: test-sbox-16-chained-bash-prompts
+  plugins: []
+  settings:
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: false
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/sandbox.md
+  inject_results_file: true
+  timeout: 300
+
+prompt_mode: accept

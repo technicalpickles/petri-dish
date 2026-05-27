@@ -1,0 +1,26 @@
+name: guidance-01b-bash-cd-loop
+description: "Bash variant combining mkdir+cd with a for loop over multiple files. Tests whether Claude uses relative paths inside the loop (after cd) or keeps absolutes. Exercises path-resolution-bypass bash-security-check. Model=sonnet, sandbox=on."
+
+environment:
+  name: test-guidance-01b-bash-cd-loop
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/guidance.md
+  inject_results_file: true
+  model: sonnet
+  timeout: 180
+
+prompt_mode: accept

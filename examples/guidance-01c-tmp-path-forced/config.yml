@@ -1,0 +1,26 @@
+name: guidance-01c-tmp-path-forced
+description: "Forces Claude into the /tmp vs $TMPDIR decision by prompting a literal /tmp path that isn't in the sandbox write allowlist."
+
+environment:
+  name: test-guidance-01c-tmp-path-forced
+  plugins: []
+  settings:
+    env:
+      ENABLE_CLAUDEAI_MCP_SERVERS: "false"
+    sandbox:
+      enabled: true
+      autoAllowBashIfSandboxed: true
+    permissions:
+      allow:
+        - Read
+        - Write
+        - Bash
+
+runtime:
+  work_dir: /tmp/sandbox-test
+  preamble: lib/preambles/guidance.md
+  inject_results_file: true
+  model: sonnet
+  timeout: 180
+
+prompt_mode: accept
