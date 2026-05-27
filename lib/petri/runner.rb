@@ -124,7 +124,7 @@ module Petri
     def ensure_env!
       env = Environment.new(@config.environment[:name])
       unless env.exists?
-        raise "Environment '#{@config.environment[:name]}' not found. Run: harness setup #{@config.name}"
+        raise "Environment '#{@config.environment[:name]}' not found. Run: petri setup #{@config.name}"
       end
     end
 
@@ -173,12 +173,12 @@ module Petri
       work_dir = @config.runtime[:work_dir]
       env_dir = Environment.new(@config.environment[:name]).env_path
 
-      prompt_file = Tempfile.new(["harness-prompt-", ".md"], Dir.tmpdir)
+      prompt_file = Tempfile.new(["petri-prompt-", ".md"], Dir.tmpdir)
       prompt_file.write(prompt)
       prompt_file.close
 
       model_flag = @config.runtime[:model] ? " --model #{@config.runtime[:model]}" : ""
-      launcher = Tempfile.new(["harness-launcher-", ".sh"], Dir.tmpdir)
+      launcher = Tempfile.new(["petri-launcher-", ".sh"], Dir.tmpdir)
       launcher.write(<<~SH)
         #!/usr/bin/env bash
         exec env CLAUDE_CONFIG_DIR='#{env_dir}' ENABLE_CLAUDEAI_MCP_SERVERS='false' claude#{model_flag} "$(cat '#{prompt_file.path}')"
@@ -277,8 +277,8 @@ module Petri
       $stderr.puts "    - claude binary missing from PATH inside tmux."
       $stderr.puts ""
       $stderr.puts "  Recovery:"
-      $stderr.puts "    harness setup --clean #{@config.name}"
-      $stderr.puts "    harness setup #{@config.name}"
+      $stderr.puts "    petri setup --clean #{@config.name}"
+      $stderr.puts "    petri setup #{@config.name}"
       $stderr.puts "    cenv login #{@config.environment[:name]}  # if a /login prompt was shown"
       $stderr.puts ""
       if File.exist?(transcript_path) && File.size(transcript_path) > 0
