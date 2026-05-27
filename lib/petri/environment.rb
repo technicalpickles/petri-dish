@@ -6,8 +6,6 @@ require "shellwords"
 
 module Petri
   class Environment
-    HARNESS_ROOT = File.expand_path("../..", __FILE__)
-
     attr_reader :name
 
     def initialize(name)
@@ -104,11 +102,11 @@ module Petri
     private
 
     def event_logger_command
-      "HOOK_LOG_FILE='#{hook_log_path}' '#{HARNESS_ROOT}/hooks/event-logger.sh'"
+      "HOOK_LOG_FILE='#{hook_log_path}' '#{Petri.root}/hooks/event-logger.sh'"
     end
 
     def permission_handler_command(mode)
-      "HOOK_LOG_FILE='#{hook_log_path}' HARNESS_PERMISSION_MODE=#{mode} '#{HARNESS_ROOT}/hooks/permission-handler.sh'"
+      "HOOK_LOG_FILE='#{hook_log_path}' HARNESS_PERMISSION_MODE=#{mode} '#{Petri.root}/hooks/permission-handler.sh'"
     end
 
     def event_logger_hook_with_matcher
