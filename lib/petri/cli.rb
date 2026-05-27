@@ -40,13 +40,20 @@ module Petri
       @results_dir ||= File.join(Dir.pwd, "results")
     end
 
+    def parse_tests_dir_flag!
+      parser = OptionParser.new do |opts|
+        opts.on("--tests-dir DIR", "Override the tests directory") { |d| @tests_dir = d }
+      end
+      parser.order!(@argv)
+    end
+
     def cmd_run
+      parse_tests_dir_flag!
       options = { deny: false, debug: false, keep: false }
       parser = OptionParser.new do |opts|
         opts.on("--deny", "Deny all permission prompts") { options[:deny] = true }
         opts.on("--debug", "Show hook events in real time") { options[:debug] = true }
         opts.on("--keep", "Don't kill tmux on completion") { options[:keep] = true }
-        opts.on("--tests-dir DIR", "Override the tests directory") { |d| @tests_dir = d }
       end
       parser.parse!(@argv)
 
@@ -62,6 +69,7 @@ module Petri
     end
 
     def cmd_list
+      parse_tests_dir_flag!
       puts "Available tests in #{tests_dir}:\n\n"
       each_test do |name, config|
         puts "  \e[32m#{name}\e[0m"
@@ -100,6 +108,7 @@ module Petri
     end
 
     def cmd_setup
+      parse_tests_dir_flag!
       clean = @argv.delete("--clean")
       test_filter = @argv.shift
 
