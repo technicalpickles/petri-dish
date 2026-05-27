@@ -15,13 +15,14 @@ module Petri
   class AuthFailure < StandardError; end
 
   class Runner
-    HARNESS_ROOT = File.expand_path("../..", __FILE__)
     POLL_INTERVAL = 2 # seconds
     STARTUP_DEADLINE = 60 # seconds, must see a SessionStart event by then or fail loud
     AUTH_ERROR_PATTERN = %r{API Error: 40[13]|Please run /login|Invalid authentication credentials|authentication_error}
 
-    def initialize(test_name, deny: false, debug: false, keep: false)
-      @test_dir = File.join(HARNESS_ROOT, "tests", test_name)
+    def initialize(test_name, tests_dir:, results_dir:, deny: false, debug: false, keep: false)
+      @tests_dir = tests_dir
+      @results_dir = results_dir
+      @test_dir = File.join(tests_dir, test_name)
       @config = Config.new(@test_dir)
       @deny = deny
       @debug = debug
@@ -130,7 +131,7 @@ module Petri
 
     def create_results_dir
       timestamp = Time.now.strftime("%Y-%m-%dT%H-%M")
-      dir = File.join(HARNESS_ROOT, "results", @config.name, timestamp)
+      dir = File.join(@results_dir, @config.name, timestamp)
       FileUtils.mkdir_p(dir)
       dir
     end
@@ -140,8 +141,8 @@ module Petri
 
       # Preamble
       if @config.runtime[:preamble]
-        preamble_path = File.join(HARNESS_ROOT, @config.runtime[:preamble])
-        if File.exist?(preamble_path)
+        preamble_path = resolve_preamble(@config.runtime[:preamble])
+        if preamble_path
           parts << File.read(preamble_path)
           parts << "\n---\n"
         end
@@ -292,6 +293,21 @@ module Petri
       $stderr.puts ""
       # Drop a marker so the empty results dir is self-explanatory later.
       File.write(File.join(results_dir, marker_file), "#{err.message}\n")
+    end
+
+    def resolve_preamble(name)
+      # Legacy configs use paths like "lib/preambles/sandbox.md". Strip the prefix
+      # so the bare name maps to gem-bundled lib/petri/preambles/<name>.md, but
+      # still allow user-provided overrides in the tests_dir.
+      bare = name.sub(%r{\Alib/preambles/}, "")
+
+      candidates = [
+        File.join(@tests_dir, name),
+        File.join(@tests_dir, bare),
+        File.join(Petri.root, "lib", "petri", "preambles", bare)
+      ]
+
+      candidates.find { |p| File.exist?(p) }
     end
 
     def tmux_alive?
