@@ -11,7 +11,7 @@
 
 set -u
 
-LOG_FILE="${HOOK_LOG_FILE:-/tmp/harness-hooks.jsonl}"
+LOG_FILE="${HOOK_LOG_FILE:-/tmp/petri-hooks.jsonl}"
 PATTERN="${HOOK_BLOCK_PATTERN:-}"
 
 PAYLOAD=$(cat)
