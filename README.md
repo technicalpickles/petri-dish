@@ -15,9 +15,16 @@ Petri runs a Claude Code session inside an isolated cenv environment, injects ho
 
 ## Install
 
+Not on rubygems yet (the name's taken). Clone and build locally:
+
 ```
-gem install petri
+git clone https://github.com/technicalpickles/petri.git
+cd petri
+gem build petri.gemspec
+gem install petri-0.1.0.gem
 ```
+
+That puts `petri` on your PATH so the commands below work from anywhere.
 
 ## Quick start
 
@@ -32,11 +39,9 @@ petri results my-first-test
 
 By default, petri looks for tests in `./petri/` relative to your current directory. Override with `--tests-dir <path>` or `PETRI_TESTS_DIR`.
 
-To explore the bundled examples without writing your own, clone the repo and run from there:
+To explore the bundled examples, from the cloned petri repo:
 
 ```
-git clone https://github.com/technicalpickles/petri.git
-cd petri
 petri run --tests-dir examples sandbox-01-baseline
 ```
 
