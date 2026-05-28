@@ -19,10 +19,10 @@ module PetriDish
     STARTUP_DEADLINE = 60 # seconds, must see a SessionStart event by then or fail loud
     AUTH_ERROR_PATTERN = %r{API Error: 40[13]|Please run /login|Invalid authentication credentials|authentication_error}
 
-    def initialize(test_name, tests_dir:, results_dir:, deny: false, debug: false, keep: false)
-      @tests_dir = tests_dir
+    def initialize(test_name, cultures_dir:, results_dir:, deny: false, debug: false, keep: false)
+      @cultures_dir = cultures_dir
       @results_dir = results_dir
-      @test_dir = File.join(tests_dir, test_name)
+      @test_dir = File.join(cultures_dir, test_name)
       @config = Config.new(@test_dir)
       @deny = deny
       @debug = debug
@@ -298,12 +298,12 @@ module PetriDish
     def resolve_preamble(name)
       # Legacy configs use paths like "lib/preambles/sandbox.md". Strip the prefix
       # so the bare name maps to gem-bundled lib/petri/preambles/<name>.md, but
-      # still allow user-provided overrides in the tests_dir.
+      # still allow user-provided overrides in the cultures_dir.
       bare = name.sub(%r{\Alib/preambles/}, "")
 
       candidates = [
-        File.join(@tests_dir, name),
-        File.join(@tests_dir, bare),
+        File.join(@cultures_dir, name),
+        File.join(@cultures_dir, bare),
         File.join(PetriDish.root, "lib", "petri_dish", "preambles", bare)
       ]
 

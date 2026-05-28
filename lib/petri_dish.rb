@@ -4,7 +4,7 @@ require_relative "petri_dish/version"
 
 module PetriDish
   # Root directory of the installed gem. Used to locate ship-with assets
-  # (hooks, preambles). Distinct from user-provided tests_dir and results_dir.
+  # (hooks, preambles). Distinct from user-provided cultures_dir and results_dir.
   def self.root
     File.expand_path("..", __dir__)
   end

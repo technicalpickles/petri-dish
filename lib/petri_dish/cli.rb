@@ -32,23 +32,23 @@ module PetriDish
 
     private
 
-    def tests_dir
-      @tests_dir ||= ENV["PETRIDISH_CULTURES_DIR"] || File.join(Dir.pwd, "petri")
+    def cultures_dir
+      @cultures_dir ||= ENV["PETRIDISH_CULTURES_DIR"] || File.join(Dir.pwd, "cultures")
     end
 
     def results_dir
       @results_dir ||= File.join(Dir.pwd, "results")
     end
 
-    def parse_tests_dir_flag!
+    def parse_cultures_dir_flag!
       parser = OptionParser.new do |opts|
-        opts.on("--tests-dir DIR", "Override the tests directory") { |d| @tests_dir = d }
+        opts.on("--cultures-dir DIR", "Override the cultures directory") { |d| @cultures_dir = d }
       end
       parser.order!(@argv)
     end
 
     def cmd_run
-      parse_tests_dir_flag!
+      parse_cultures_dir_flag!
       options = { deny: false, debug: false, keep: false }
       parser = OptionParser.new do |opts|
         opts.on("--deny", "Deny all permission prompts") { options[:deny] = true }
@@ -59,18 +59,18 @@ module PetriDish
 
       test_name = @argv.shift
       unless test_name
-        $stderr.puts "Usage: petri run <test> [options]"
+        $stderr.puts "Usage: petri-dish run <culture> [options]"
         exit 1
       end
 
       validate_test!(test_name)
-      runner = Runner.new(test_name, tests_dir: tests_dir, results_dir: results_dir, **options)
+      runner = Runner.new(test_name, cultures_dir: cultures_dir, results_dir: results_dir, **options)
       runner.run!
     end
 
     def cmd_list
-      parse_tests_dir_flag!
-      puts "Available tests in #{tests_dir}:\n\n"
+      parse_cultures_dir_flag!
+      puts "Available cultures in #{cultures_dir}:\n\n"
       each_test do |name, config|
         puts "  \e[32m#{name}\e[0m"
         puts "    #{config.description}"
@@ -108,7 +108,7 @@ module PetriDish
     end
 
     def cmd_setup
-      parse_tests_dir_flag!
+      parse_cultures_dir_flag!
       clean = @argv.delete("--clean")
       test_filter = @argv.shift
 
@@ -127,7 +127,7 @@ module PetriDish
     end
 
     def setup_test(test_name)
-      config = Config.new(File.join(tests_dir, test_name))
+      config = Config.new(File.join(cultures_dir, test_name))
       env = Environment.new(config.environment[:name])
 
       puts "\e[32m[setup]\e[0m Setting up: #{test_name}"
@@ -149,7 +149,7 @@ module PetriDish
     end
 
     def teardown_test(test_name)
-      config = Config.new(File.join(tests_dir, test_name))
+      config = Config.new(File.join(cultures_dir, test_name))
       env = Environment.new(config.environment[:name])
       puts "\e[32m[setup]\e[0m Cleaning: #{test_name}"
       env.clean!
@@ -172,42 +172,42 @@ module PetriDish
     end
 
     def validate_test!(name)
-      test_dir = File.join(tests_dir, name)
+      test_dir = File.join(cultures_dir, name)
       unless File.directory?(test_dir)
-        $stderr.puts "Test not found: #{name}"
-        $stderr.puts "Tests dir: #{tests_dir}"
-        $stderr.puts "Available tests: #{available_tests.join(', ')}"
+        $stderr.puts "Culture not found: #{name}"
+        $stderr.puts "Cultures dir: #{cultures_dir}"
+        $stderr.puts "Available cultures: #{available_tests.join(', ')}"
         exit 1
       end
     end
 
     def available_tests
-      Dir.glob("#{tests_dir}/*/config.yml").map { |p| File.basename(File.dirname(p)) }.sort
+      Dir.glob("#{cultures_dir}/*/config.yml").map { |p| File.basename(File.dirname(p)) }.sort
     end
 
     def each_test
       available_tests.each do |name|
-        config = Config.new(File.join(tests_dir, name))
+        config = Config.new(File.join(cultures_dir, name))
         yield name, config
       end
     end
 
     def usage
       puts <<~USAGE
-        Usage: petri <command> [options]
+        Usage: petri-dish <command> [options]
 
         Commands:
-          run <test> [--deny] [--debug] [--keep] [--tests-dir DIR]
-          list                    List available tests
-          results [test]          Show past results
-          setup [test]            Create environments
-          setup --clean [test]    Tear down environments
+          run <culture> [--deny] [--debug] [--keep] [--cultures-dir DIR]
+          list                    List available cultures
+          results [culture]       Show past results
+          setup [culture]         Create environments
+          setup --clean [culture] Tear down environments
           help                    Show this help
 
-        Tests dir resolution order:
-          1. --tests-dir flag
+        Cultures directory resolution (in order):
+          1. --cultures-dir flag
           2. $PETRIDISH_CULTURES_DIR environment variable
-          3. ./petri/ in current working directory
+          3. ./cultures/ relative to current directory
       USAGE
     end
   end
