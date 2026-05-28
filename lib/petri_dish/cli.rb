@@ -108,8 +108,8 @@ module PetriDish
     end
 
     def cmd_setup
-      parse_cultures_dir_flag!
       clean = @argv.delete("--clean")
+      parse_cultures_dir_flag!
       test_filter = @argv.shift
 
       tests = if test_filter
