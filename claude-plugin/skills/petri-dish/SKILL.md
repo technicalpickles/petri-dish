@@ -8,7 +8,7 @@ user_invocable: true
 
 A *culture* is one petri-dish experiment: a directory under `cultures/` (or whatever `--cultures-dir` points at) containing `config.yml` and `prompt.md`. This skill is for shaping new cultures so they generate clean signal, not muddy prose.
 
-The deep reference is [`docs/authoring-cultures.md`](https://github.com/technicalpickles/petri-dish/blob/main/docs/authoring-cultures.md) in the gem repo. Read it for the schema, full prompt-shape guidance, preamble inventory, cell discipline, and gotchas. The summary below is what to keep loaded while authoring.
+The deep reference is [references/authoring-cultures.md](references/authoring-cultures.md) in the gem repo. Read it for the schema, full prompt-shape guidance, preamble inventory, cell discipline, and gotchas. The summary below is what to keep loaded while authoring.
 
 ## The shape
 
@@ -96,7 +96,7 @@ A *cell* is one specific configuration. To get findings out of a probe rather th
 ## Where to start
 
 - **New culture, similar to an existing one:** find an example in `examples/` shaped like what you want, copy the directory, edit.
-- **New culture, novel shape:** read [`docs/authoring-cultures.md`](https://github.com/technicalpickles/petri-dish/blob/main/docs/authoring-cultures.md) start to finish, then draft `config.yml` and `prompt.md` together.
+- **New culture, novel shape:** read [references/authoring-cultures.md](references/authoring-cultures.md) start to finish, then draft `config.yml` and `prompt.md` together.
 - **A/B variant:** copy the existing culture, change one variable, give it a name that signals what differs (`sandbox-07-escape-hatch` vs `sandbox-07b-escape-hatch-disabled`).
 
 When in doubt about a field, check `lib/petri_dish/config.rb` in the gem (it's the schema source of truth) or look at how three existing cultures use that field.

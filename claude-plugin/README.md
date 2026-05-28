@@ -26,7 +26,7 @@ Once installed, Claude reaches for the skill when you ask things like:
 - "What's a sensible baseline cell for investigating permission-prompt behavior?"
 - "Why is my prompt producing prose instead of parseable results?"
 
-The skill carries the schema, the prompt-shape conventions, the preamble selection table, and the cell-discipline rules inline. For the full reference (and the why behind each rule), it links to [`docs/authoring-cultures.md`](https://github.com/technicalpickles/petri-dish/blob/main/docs/authoring-cultures.md) in the gem repo.
+The skill carries the schema, the prompt-shape conventions, the preamble selection table, and the cell-discipline rules inline. For the full reference (and the why behind each rule), it links to [`skills/petri-dish/references/authoring-cultures.md`](skills/petri-dish/references/authoring-cultures.md), which travels with the plugin.
 
 ## When it doesn't fire
 

@@ -9,7 +9,7 @@ Each culture lives under `examples/<name>/` and contains:
 - `config.yml`: environment, plugins, settings, runtime config, prompt mode.
 - `prompt.md`: what Claude should do.
 
-See existing examples for the shape, and read [`docs/authoring-cultures.md`](docs/authoring-cultures.md) for the conventions behind those shapes (prompt anatomy, baseline cells, preamble selection, multi-run discipline, gotchas). Culture names follow `category-NN[variant]-short-description`, e.g. `sandbox-07b-escape-hatch-disabled`.
+See existing examples for the shape, and read [`claude-plugin/skills/petri-dish/references/authoring-cultures.md`](claude-plugin/skills/petri-dish/references/authoring-cultures.md) for the conventions behind those shapes (prompt anatomy, baseline cells, preamble selection, multi-run discipline, gotchas). Culture names follow `category-NN[variant]-short-description`, e.g. `sandbox-07b-escape-hatch-disabled`.
 
 For multi-part cultures sharing a prompt, symlink the shared prompt:
 

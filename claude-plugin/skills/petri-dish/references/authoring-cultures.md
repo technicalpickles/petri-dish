@@ -183,7 +183,7 @@ Claude Code's sandbox blocks writes to a hardcoded list of paths regardless of `
 
 ## Authoring with an agent
 
-This repo ships a Claude Code plugin (`claude-plugin/`) with a SKILL that points an agent at this doc. Install it via the [`pickled-claude-plugins`](https://github.com/technicalpickles/pickled-claude-plugins) marketplace:
+This file ships as part of the [petri-dish Claude Code plugin](../../../README.md). Install it via the [`pickled-claude-plugins`](https://github.com/technicalpickles/pickled-claude-plugins) marketplace:
 
 ```
 claude plugin marketplace add technicalpickles/pickled-claude-plugins
@@ -196,11 +196,12 @@ Once installed, Claude has the schema, prompt-shape guidance, cell discipline, a
 - "Add an A/B variant of `<existing-culture>` that flips `<one variable>`."
 - "What's a sensible baseline cell for investigating `<question>`?"
 
-If you're authoring by hand, the shortest path is to find an example in `examples/` that's shaped like what you want and copy it. The categories in the README map cleanly to common shapes (sandbox probes, permission probes, guidance probes, parser probes).
+If you're authoring by hand, the shortest path is to find an example in the gem's `examples/` directory that's shaped like what you want and copy it. The categories in the [gem README](../../../../README.md) map cleanly to common shapes (sandbox probes, permission probes, guidance probes, parser probes).
 
 ## Related docs
 
-- [README.md](../README.md): install, CLI reference, quick start
-- [CONTRIBUTING.md](../CONTRIBUTING.md): code style, PR conventions
-- The `examples/` directory: working cultures across four categories
+- [Gem README](../../../../README.md): install, CLI reference, quick start
+- [Gem CONTRIBUTING](../../../../CONTRIBUTING.md): code style, PR conventions
+- [Plugin README](../../../README.md): plugin install and skill behavior
+- The gem's `examples/` directory: working cultures across four categories
 - [How the Claude Code probes are built](https://github.com/technicalpickles/pickletown/blob/main/projects/claude-test-harness/docs/2026-05-27-how-the-probes-are-built.md) (in pickletown): the longer essay this guide was distilled from, with the LSP-specific context that doesn't belong in the gem
