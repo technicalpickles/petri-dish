@@ -18,7 +18,7 @@ environment:
         - matcher: "Bash"
           hooks:
             - type: command
-              command: "HOOK_LOG_FILE=/tmp/harness-hooks-18.jsonl HOOK_BLOCK_PATTERN=^curl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-block-pattern.sh"
+              command: "PETRIDISH_HOOK_LOG_FILE=/tmp/harness-hooks-18.jsonl HOOK_BLOCK_PATTERN=^curl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-block-pattern.sh"
               timeout: 5
 
 runtime:

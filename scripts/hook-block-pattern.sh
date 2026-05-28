@@ -3,7 +3,7 @@
 #
 # Environment:
 #   HOOK_BLOCK_PATTERN - regex matched against tool_input.command (required)
-#   HOOK_LOG_FILE      - JSONL path to log every invocation (optional)
+#   PETRIDISH_HOOK_LOG_FILE      - JSONL path to log every invocation (optional)
 #
 # Reads the PreToolUse JSON payload on stdin. If the command matches
 # HOOK_BLOCK_PATTERN, emits a JSON decision denying the call with
@@ -11,7 +11,7 @@
 
 set -u
 
-LOG_FILE="${HOOK_LOG_FILE:-/tmp/petri-hooks.jsonl}"
+LOG_FILE="${PETRIDISH_HOOK_LOG_FILE:-/tmp/petri-hooks.jsonl}"
 PATTERN="${HOOK_BLOCK_PATTERN:-}"
 
 PAYLOAD=$(cat)

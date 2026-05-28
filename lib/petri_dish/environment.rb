@@ -102,11 +102,11 @@ module PetriDish
     private
 
     def event_logger_command
-      "HOOK_LOG_FILE='#{hook_log_path}' '#{PetriDish.root}/hooks/event-logger.sh'"
+      "PETRIDISH_HOOK_LOG_FILE='#{hook_log_path}' '#{PetriDish.root}/hooks/event-logger.sh'"
     end
 
     def permission_handler_command(mode)
-      "HOOK_LOG_FILE='#{hook_log_path}' HARNESS_PERMISSION_MODE=#{mode} '#{PetriDish.root}/hooks/permission-handler.sh'"
+      "PETRIDISH_HOOK_LOG_FILE='#{hook_log_path}' PETRIDISH_PERMISSION_MODE=#{mode} '#{PetriDish.root}/hooks/permission-handler.sh'"
     end
 
     def event_logger_hook_with_matcher

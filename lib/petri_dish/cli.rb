@@ -33,7 +33,7 @@ module PetriDish
     private
 
     def tests_dir
-      @tests_dir ||= ENV["PETRI_TESTS_DIR"] || File.join(Dir.pwd, "petri")
+      @tests_dir ||= ENV["PETRIDISH_CULTURES_DIR"] || File.join(Dir.pwd, "petri")
     end
 
     def results_dir
@@ -206,7 +206,7 @@ module PetriDish
 
         Tests dir resolution order:
           1. --tests-dir flag
-          2. $PETRI_TESTS_DIR environment variable
+          2. $PETRIDISH_CULTURES_DIR environment variable
           3. ./petri/ in current working directory
       USAGE
     end

@@ -12,18 +12,18 @@ environment:
         - matcher: ""
           hooks:
             - type: command
-              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              command: "PETRIDISH_HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
               timeout: 5
       PostToolUse:
         - matcher: ""
           hooks:
             - type: command
-              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              command: "PETRIDISH_HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
               timeout: 5
       Notification:
         - hooks:
             - type: command
-              command: "HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
+              command: "PETRIDISH_HOOK_LOG_FILE=/tmp/harness-hooks-15b.jsonl /Users/josh.nichols/pickleton/projects/claude-test-harness/scripts/hook-logger.sh"
               timeout: 5
 
 runtime:

@@ -3,9 +3,9 @@
 # Usage: Configured as a Claude Code hook command.
 #
 # Environment:
-#   HOOK_LOG_FILE - path to append JSONL entries (default: /tmp/petri-hooks.jsonl)
+#   PETRIDISH_HOOK_LOG_FILE - path to append JSONL entries (default: /tmp/petri-hooks.jsonl)
 
-LOG_FILE="${HOOK_LOG_FILE:-/tmp/petri-hooks.jsonl}"
+LOG_FILE="${PETRIDISH_HOOK_LOG_FILE:-/tmp/petri-hooks.jsonl}"
 TS=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ" 2>/dev/null || date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Read stdin (the hook JSON payload)

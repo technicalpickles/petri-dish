@@ -5,11 +5,11 @@
 # SessionEnd, PermissionDenied.
 #
 # Environment:
-#   HOOK_LOG_FILE - path to append JSONL entries (required)
+#   PETRIDISH_HOOK_LOG_FILE - path to append JSONL entries (required)
 
 set -euo pipefail
 
-LOG_FILE="${HOOK_LOG_FILE:?HOOK_LOG_FILE must be set}"
+LOG_FILE="${PETRIDISH_HOOK_LOG_FILE:?PETRIDISH_HOOK_LOG_FILE must be set}"
 TS=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ" 2>/dev/null || date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 PAYLOAD=$(cat)

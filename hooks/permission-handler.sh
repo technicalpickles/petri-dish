@@ -3,13 +3,13 @@
 # returns allow/deny decision for PermissionRequest.
 #
 # Environment:
-#   HOOK_LOG_FILE            - path to append JSONL entries (required)
-#   HARNESS_PERMISSION_MODE  - "accept" or "deny" (default: accept)
+#   PETRIDISH_HOOK_LOG_FILE            - path to append JSONL entries (required)
+#   PETRIDISH_PERMISSION_MODE  - "accept" or "deny" (default: accept)
 
 set -euo pipefail
 
-LOG_FILE="${HOOK_LOG_FILE:?HOOK_LOG_FILE must be set}"
-MODE="${HARNESS_PERMISSION_MODE:-accept}"
+LOG_FILE="${PETRIDISH_HOOK_LOG_FILE:?PETRIDISH_HOOK_LOG_FILE must be set}"
+MODE="${PETRIDISH_PERMISSION_MODE:-accept}"
 TS=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ" 2>/dev/null || date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 PAYLOAD=$(cat)
