@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative "lib/petri/version"
+require_relative "lib/petri_dish/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "petri"
-  spec.version = Petri::VERSION
+  spec.name = "petri-dish"
+  spec.version = PetriDish::VERSION
   spec.authors = ["Josh Nichols"]
   spec.email = ["josh.nichols@gmail.com"]
 
   spec.summary = "Isolated, repeatable Claude Code experiments"
   spec.description = "Petri runs Claude Code sessions inside isolated cenv environments, captures hook events, and correlates them into structured results. The cenv environment is the dish; petri is the technician."
-  spec.homepage = "https://github.com/technicalpickles/petri"
+  spec.homepage = "https://github.com/technicalpickles/petri-dish"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2"
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir[
     "lib/**/*",
-    "bin/petri",
+    "bin/petri-dish",
     "hooks/**/*",
     "scripts/**/*",
     "README.md",
@@ -26,6 +26,6 @@ Gem::Specification.new do |spec|
     "CONTRIBUTING.md"
   ]
   spec.bindir = "bin"
-  spec.executables = ["petri"]
+  spec.executables = ["petri-dish"]
   spec.require_paths = ["lib"]
 end

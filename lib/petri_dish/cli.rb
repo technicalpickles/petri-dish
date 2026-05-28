@@ -3,7 +3,7 @@
 require "optparse"
 require "fileutils"
 
-module Petri
+module PetriDish
   class CLI
     def initialize(argv)
       @argv = argv

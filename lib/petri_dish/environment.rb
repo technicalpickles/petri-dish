@@ -4,7 +4,7 @@ require "json"
 require "fileutils"
 require "shellwords"
 
-module Petri
+module PetriDish
   class Environment
     attr_reader :name
 
@@ -102,11 +102,11 @@ module Petri
     private
 
     def event_logger_command
-      "HOOK_LOG_FILE='#{hook_log_path}' '#{Petri.root}/hooks/event-logger.sh'"
+      "HOOK_LOG_FILE='#{hook_log_path}' '#{PetriDish.root}/hooks/event-logger.sh'"
     end
 
     def permission_handler_command(mode)
-      "HOOK_LOG_FILE='#{hook_log_path}' HARNESS_PERMISSION_MODE=#{mode} '#{Petri.root}/hooks/permission-handler.sh'"
+      "HOOK_LOG_FILE='#{hook_log_path}' HARNESS_PERMISSION_MODE=#{mode} '#{PetriDish.root}/hooks/permission-handler.sh'"
     end
 
     def event_logger_hook_with_matcher

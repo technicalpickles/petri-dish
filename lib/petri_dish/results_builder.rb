@@ -4,7 +4,7 @@ require "json"
 require "fileutils"
 require_relative "hook_log"
 
-module Petri
+module PetriDish
   class ResultsBuilder
     RESULT_PATTERN = /^\S*\s*RESULT:\s*(\S+)\s*\|\s*(.*?)\s*$/
 

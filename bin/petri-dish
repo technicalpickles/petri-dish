@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require "petri"
+require "petri_dish"
 
-Petri::CLI.new(ARGV).run
+PetriDish::CLI.new(ARGV).run

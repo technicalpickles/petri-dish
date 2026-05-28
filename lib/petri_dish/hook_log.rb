@@ -3,7 +3,7 @@
 require "json"
 require "time"
 
-module Petri
+module PetriDish
   ToolEvent = Data.define(
     :session_id,
     :tool_use_id,

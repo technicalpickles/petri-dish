@@ -3,7 +3,7 @@
 require "yaml"
 require "pathname"
 
-module Petri
+module PetriDish
   class Config
     REQUIRED_KEYS = %w[name description environment runtime].freeze
     REQUIRED_ENV_KEYS = %w[name].freeze

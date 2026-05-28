@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Petri
+module PetriDish
   class Transcript
     ANSI_REGEX = /\e\[[0-9;]*[a-zA-Z]/
 

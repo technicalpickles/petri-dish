@@ -10,7 +10,7 @@ require_relative "hook_log"
 require_relative "results_builder"
 require_relative "transcript"
 
-module Petri
+module PetriDish
   class StartupFailure < StandardError; end
   class AuthFailure < StandardError; end
 
@@ -304,7 +304,7 @@ module Petri
       candidates = [
         File.join(@tests_dir, name),
         File.join(@tests_dir, bare),
-        File.join(Petri.root, "lib", "petri", "preambles", bare)
+        File.join(PetriDish.root, "lib", "petri_dish", "preambles", bare)
       ]
 
       candidates.find { |p| File.exist?(p) }
