@@ -1,0 +1,10 @@
+{
+  "name": "petri-dish",
+  "description": "Author petri-dish cultures (Claude Code experiments) with the discipline learned from prior probes: schema, prompt anatomy, baseline cells, multi-run averaging, and the brittle bits to watch for.",
+  "author": {
+    "name": "Josh Nichols",
+    "email": "josh@technicalpickles.com"
+  },
+  "repository": "https://github.com/technicalpickles/petri-dish",
+  "license": "MIT"
+}
