@@ -1,10 +1,16 @@
-# Petri
+# petri-dish
 
-Isolated, repeatable Claude Code experiments. The [cenv](https://github.com/technicalpickles/cenv) environment is the dish; petri is the technician.
+A petri-dish for agentic coding experiments. Keep your cultures in your lab; load them into a dish to see how they grow.
+
+## Why
+
+Your `~/.claude/` is production. There's no staging copy of it, no rollback if a hook misbehaves or a plugin clobbers your settings. [I've written about this.](https://pickles.dev/dot-claude-is-production/) `CLAUDE_CONFIG_DIR` gets you a sandbox; petri-dish gets you reproducible experiments inside one.
+
+A **culture** is one experiment: a `config.yml` + `prompt.md` pair. A **petri-dish** is what runs it. Each dish is isolated via [cenv](https://github.com/technicalpickles/cenv) so the experiment never touches your real config, and hooks injected into the dish observe the run from inside without disturbing it.
 
 ## What it does
 
-Petri runs a Claude Code session inside an isolated cenv environment, injects hooks to log every tool call and permission prompt, and correlates the events into structured results. You write a small `config.yml` and a `prompt.md` for each experiment, then `petri run <name>` to execute it.
+`petri-dish run <culture>` boots an isolated cenv environment, injects PreToolUse/PostToolUse/PermissionRequest hooks, runs Claude Code against your prompt, and correlates the event log into a structured results file.
 
 ## Requirements
 
@@ -15,63 +21,63 @@ Petri runs a Claude Code session inside an isolated cenv environment, injects ho
 
 ## Install
 
-Not on rubygems yet (the name's taken). Clone and build locally:
+Not on rubygems yet. Clone and build locally:
 
 ```
-git clone https://github.com/technicalpickles/petri.git
-cd petri
-gem build petri.gemspec
-gem install petri-0.1.0.gem
+git clone https://github.com/technicalpickles/petri-dish.git
+cd petri-dish
+gem build petri-dish.gemspec
+gem install petri-dish-0.1.0.gem
 ```
 
-That puts `petri` on your PATH so the commands below work from anywhere.
+That puts `petri-dish` on your PATH.
 
 ## Quick start
 
 ```
-mkdir my-experiments && cd my-experiments
-mkdir -p petri/my-first-test
-# write petri/my-first-test/config.yml and prompt.md
-petri setup my-first-test
-petri run my-first-test
-petri results my-first-test
+mkdir my-lab && cd my-lab
+mkdir -p cultures/my-first-culture
+# write cultures/my-first-culture/config.yml and prompt.md
+petri-dish setup my-first-culture
+petri-dish run my-first-culture
+petri-dish results my-first-culture
 ```
 
-By default, petri looks for tests in `./petri/` relative to your current directory. Override with `--tests-dir <path>` or `PETRI_TESTS_DIR`.
+By default, petri-dish looks for cultures in `./cultures/` relative to your current directory. Override with `--cultures-dir <path>` or `PETRIDISH_CULTURES_DIR`.
 
-To explore the bundled examples, from the cloned petri repo:
+To explore the bundled examples, from the cloned petri-dish repo:
 
 ```
-petri run --tests-dir examples sandbox-01-baseline
+petri-dish run --cultures-dir examples sandbox-01-baseline
 ```
 
 ## How it works
 
-1. **Environment**: Each test gets its own cenv environment with specific settings (sandbox config, permissions, plugins).
-2. **Hooks**: PreToolUse, PostToolUse, and PermissionRequest hooks are injected to log events and auto-handle permission prompts.
-3. **Prompt**: A markdown prompt tells Claude what commands to run and what to observe.
-4. **Results**: Hook event logs are correlated into structured results (prompted vs silent, timing, outcomes).
+1. **Environment.** Each culture gets its own cenv environment with specific settings (sandbox config, permissions, plugins). Nothing touches your `~/.claude/`.
+2. **Hooks.** PreToolUse, PostToolUse, and PermissionRequest hooks are injected into the dish to log events and auto-handle permission prompts.
+3. **Prompt.** A markdown prompt tells Claude what commands to run and what to observe.
+4. **Results.** Hook event logs are correlated into structured results (prompted vs silent, timing, outcomes).
 
 ## CLI reference
 
 ```
-Usage: petri <command> [options]
+Usage: petri-dish <command> [options]
 
 Commands:
-  run <test> [--deny] [--debug] [--keep] [--tests-dir DIR]
-  list                    List available tests
-  results [test]          Show past results
-  setup [test]            Create environments
-  setup --clean [test]    Tear down environments
+  run <culture> [--deny] [--debug] [--keep] [--cultures-dir DIR]
+  list                    List available cultures
+  results [culture]       Show past results
+  setup [culture]         Create environments
+  setup --clean [culture] Tear down environments
   help                    Show this help
 ```
 
-## Adding a test
+## Adding a culture
 
-Each test directory needs two files:
+Each culture directory needs two files:
 
 ```
-petri/my-test/
+cultures/my-culture/
   config.yml
   prompt.md
 ```
@@ -79,11 +85,11 @@ petri/my-test/
 See `examples/` for working configs. The schema:
 
 ```yaml
-name: my-test
+name: my-culture
 description: "One-line description"
 
 environment:
-  name: test-my-test
+  name: test-my-culture
   plugins: []
   settings:
     sandbox:

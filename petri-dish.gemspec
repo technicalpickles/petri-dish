@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Josh Nichols"]
   spec.email = ["josh.nichols@gmail.com"]
 
-  spec.summary = "Isolated, repeatable Claude Code experiments"
-  spec.description = "Petri runs Claude Code sessions inside isolated cenv environments, captures hook events, and correlates them into structured results. The cenv environment is the dish; petri is the technician."
+  spec.summary     = "Isolated, repeatable experiments against agentic coding tools."
+  spec.description = "petri-dish runs Claude Code sessions inside isolated cenv environments, captures hook events, and correlates them into structured results. Your ~/.claude is production; the dish is where you do science."
   spec.homepage = "https://github.com/technicalpickles/petri-dish"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2"
