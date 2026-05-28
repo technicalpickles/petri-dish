@@ -125,7 +125,7 @@ module PetriDish
     def ensure_env!
       env = Environment.new(@config.environment[:name])
       unless env.exists?
-        raise "Environment '#{@config.environment[:name]}' not found. Run: petri setup #{@config.name}"
+        raise "Environment '#{@config.environment[:name]}' not found. Run: petri-dish setup #{@config.name}"
       end
     end
 
@@ -278,8 +278,8 @@ module PetriDish
       $stderr.puts "    - claude binary missing from PATH inside tmux."
       $stderr.puts ""
       $stderr.puts "  Recovery:"
-      $stderr.puts "    petri setup --clean #{@config.name}"
-      $stderr.puts "    petri setup #{@config.name}"
+      $stderr.puts "    petri-dish setup --clean #{@config.name}"
+      $stderr.puts "    petri-dish setup #{@config.name}"
       $stderr.puts "    cenv login #{@config.environment[:name]}  # if a /login prompt was shown"
       $stderr.puts ""
       if File.exist?(transcript_path) && File.size(transcript_path) > 0
@@ -297,7 +297,7 @@ module PetriDish
 
     def resolve_preamble(name)
       # Legacy configs use paths like "lib/preambles/sandbox.md". Strip the prefix
-      # so the bare name maps to gem-bundled lib/petri/preambles/<name>.md, but
+      # so the bare name maps to gem-bundled lib/petri_dish/preambles/<name>.md, but
       # still allow user-provided overrides in the cultures_dir.
       bare = name.sub(%r{\Alib/preambles/}, "")
 
