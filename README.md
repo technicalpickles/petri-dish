@@ -108,6 +108,10 @@ runtime:
 prompt_mode: accept   # or "deny"
 ```
 
+For a longer reference, including prompt-shape conventions, cell discipline (baseline cells, multi-run averaging, A/B variants), preamble selection, and the brittle bits to watch for, see [`docs/authoring-cultures.md`](docs/authoring-cultures.md).
+
+If you use Claude Code, the [companion plugin](claude-plugin/README.md) loads the same conventions into a skill so an agent can author cultures with the discipline already in working memory.
+
 ## Examples included
 
 - `sandbox-*`: probes of Claude Code's sandbox behavior across filesystem, network, IPC, and escape-hatch settings.

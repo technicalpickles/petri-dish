@@ -1,17 +1,17 @@
-# Contributing to Petri
+# Contributing to petri-dish
 
 Thanks for considering a contribution.
 
-## Adding an example test
+## Adding an example culture
 
-Each test lives under `examples/<name>/` and contains:
+Each culture lives under `examples/<name>/` and contains:
 
 - `config.yml`: environment, plugins, settings, runtime config, prompt mode.
 - `prompt.md`: what Claude should do.
 
-See existing examples for the shape. Test names follow `category-NN[variant]-short-description`, e.g. `sandbox-07b-escape-hatch-disabled`.
+See existing examples for the shape, and read [`docs/authoring-cultures.md`](docs/authoring-cultures.md) for the conventions behind those shapes (prompt anatomy, baseline cells, preamble selection, multi-run discipline, gotchas). Culture names follow `category-NN[variant]-short-description`, e.g. `sandbox-07b-escape-hatch-disabled`.
 
-For multi-part tests sharing a prompt, symlink the shared prompt:
+For multi-part cultures sharing a prompt, symlink the shared prompt:
 
 ```
 examples/sandbox-07b-escape-hatch-disabled/prompt.md -> ../sandbox-07-escape-hatch/prompt.md
@@ -20,9 +20,9 @@ examples/sandbox-07b-escape-hatch-disabled/prompt.md -> ../sandbox-07-escape-hat
 ## Running an example locally
 
 ```
-petri setup --tests-dir examples sandbox-01-baseline
-petri run --tests-dir examples sandbox-01-baseline
-petri results --tests-dir examples sandbox-01-baseline
+petri-dish setup --cultures-dir examples sandbox-01-baseline
+petri-dish run --cultures-dir examples sandbox-01-baseline
+petri-dish results --cultures-dir examples sandbox-01-baseline
 ```
 
 ## Code style
