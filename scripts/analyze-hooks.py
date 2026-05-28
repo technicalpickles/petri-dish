@@ -15,7 +15,7 @@ def parse_ts(ts_str):
     return None
 
 def main():
-    hook_file = sys.argv[1] if len(sys.argv) > 1 else "/tmp/petri-hooks.jsonl"
+    hook_file = sys.argv[1] if len(sys.argv) > 1 else "/tmp/petri-dish-hooks.jsonl"
 
     # Parse hook events
     entries = []

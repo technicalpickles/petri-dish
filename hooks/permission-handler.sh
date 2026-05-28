@@ -23,7 +23,7 @@ EVENT_NAME=$(printf '%s' "$PAYLOAD" | grep -o '"hook_event_name":"[^"]*"' | cut 
 if [ "$EVENT_NAME" = "PermissionRequest" ]; then
   if [ "$MODE" = "deny" ]; then
     cat <<'DENY'
-{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"deny","message":"Denied by petri"}}}
+{"hookSpecificOutput":{"hookEventName":"PermissionRequest","decision":{"behavior":"deny","message":"Denied by petri-dish"}}}
 DENY
   else
     cat <<'ALLOW'
