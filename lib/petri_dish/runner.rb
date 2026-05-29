@@ -130,8 +130,17 @@ module PetriDish
     end
 
     def create_results_dir
-      timestamp = Time.now.strftime("%Y-%m-%dT%H-%M")
-      dir = File.join(@results_dir, @config.name, timestamp)
+      timestamp = Time.now.strftime("%Y-%m-%dT%H-%M-%S")
+      base = File.join(@results_dir, @config.name, timestamp)
+      # Guard against collisions: fast cultures (~20-40s) can finish multiple
+      # runs in the same second. Append a counter so a later run never clobbers
+      # an earlier one's dir (and races its half-written hook-events.jsonl).
+      dir = base
+      counter = 1
+      while File.exist?(dir)
+        counter += 1
+        dir = "#{base}-#{counter}"
+      end
       FileUtils.mkdir_p(dir)
       dir
     end
