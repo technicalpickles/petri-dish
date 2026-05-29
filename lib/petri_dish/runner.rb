@@ -183,12 +183,12 @@ module PetriDish
       work_dir = @config.runtime[:work_dir]
       env_dir = Environment.new(@config.environment[:name]).env_path
 
-      prompt_file = Tempfile.new(["petri-prompt-", ".md"], Dir.tmpdir)
+      prompt_file = Tempfile.new(["petri-dish-prompt-", ".md"], Dir.tmpdir)
       prompt_file.write(prompt)
       prompt_file.close
 
       model_flag = @config.runtime[:model] ? " --model #{@config.runtime[:model]}" : ""
-      launcher = Tempfile.new(["petri-launcher-", ".sh"], Dir.tmpdir)
+      launcher = Tempfile.new(["petri-dish-launcher-", ".sh"], Dir.tmpdir)
       launcher.write(<<~SH)
         #!/usr/bin/env bash
         exec env CLAUDE_CONFIG_DIR='#{env_dir}' ENABLE_CLAUDEAI_MCP_SERVERS='false' claude#{model_flag} "$(cat '#{prompt_file.path}')"
