@@ -21,16 +21,20 @@ A **culture** is one experiment: a `config.yml` + `prompt.md` pair. A **petri-di
 
 ## Install
 
-Not on rubygems yet. Clone and build locally:
+```
+gem install pickleton-petri-dish
+```
+
+That puts `petri-dish` on your PATH. (The gem name is prefixed because `petri_dish` was already taken on rubygems; the CLI stays `petri-dish`.)
+
+To build from source instead:
 
 ```
 git clone https://github.com/technicalpickles/petri-dish.git
 cd petri-dish
 gem build petri-dish.gemspec
-gem install petri-dish-0.1.0.gem
+gem install pickleton-petri-dish-0.1.0.gem
 ```
-
-That puts `petri-dish` on your PATH.
 
 ## Quick start
 
