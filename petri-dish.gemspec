@@ -3,7 +3,7 @@
 require_relative "lib/petri_dish/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "pickleton-petri-dish"
+  spec.name = "petri-dish-lab"
   spec.version = PetriDish::VERSION
   spec.authors = ["Josh Nichols"]
   spec.email = ["josh.nichols@gmail.com"]
