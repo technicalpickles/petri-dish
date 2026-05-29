@@ -22,10 +22,10 @@ A **culture** is one experiment: a `config.yml` + `prompt.md` pair. A **petri-di
 ## Install
 
 ```
-gem install petri-dish-lab
+gem install agent-petri-dish
 ```
 
-That puts `petri-dish` on your PATH. (The gem has a `-lab` suffix because `petri_dish` was already taken on rubygems; the CLI stays `petri-dish`.)
+That puts `petri-dish` on your PATH. (The gem name is prefixed because `petri_dish` was already taken on rubygems; the CLI stays `petri-dish`.)
 
 ### Without setting up Ruby
 
@@ -33,13 +33,13 @@ If you don't want to deal with a Ruby toolchain, use [rv](https://github.com/spi
 
 ```
 brew install rv
-rv tool install petri-dish-lab
+rv tool install agent-petri-dish
 ```
 
 For one-off invocation without touching shell init:
 
 ```
-rv tool run --from petri-dish-lab petri-dish list
+rv tool run --from agent-petri-dish petri-dish list
 ```
 
 For the `petri-dish` binary on your PATH, follow `rv shell <your-shell>` to wire rv into your shell.
@@ -50,7 +50,7 @@ For the `petri-dish` binary on your PATH, follow `rv shell <your-shell>` to wire
 git clone https://github.com/technicalpickles/petri-dish.git
 cd petri-dish
 gem build petri-dish.gemspec
-gem install petri-dish-lab-0.1.0.gem
+gem install agent-petri-dish-0.1.0.gem
 ```
 
 ## Quick start
