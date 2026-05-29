@@ -27,7 +27,24 @@ gem install pickleton-petri-dish
 
 That puts `petri-dish` on your PATH. (The gem name is prefixed because `petri_dish` was already taken on rubygems; the CLI stays `petri-dish`.)
 
-To build from source instead:
+### Without setting up Ruby
+
+If you don't want to deal with a Ruby toolchain, use [rv](https://github.com/spinel-coop/rv). It manages an isolated Ruby per tool and installs one for you if you don't have one.
+
+```
+brew install rv
+rv tool install pickleton-petri-dish
+```
+
+For one-off invocation without touching shell init:
+
+```
+rv tool run --from pickleton-petri-dish petri-dish list
+```
+
+For the `petri-dish` binary on your PATH, follow `rv shell <your-shell>` to wire rv into your shell.
+
+### From source
 
 ```
 git clone https://github.com/technicalpickles/petri-dish.git
